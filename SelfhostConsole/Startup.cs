@@ -9,6 +9,8 @@ namespace SelfhostConsole
 		public void Configuration(IAppBuilder appBuilder)
 		{
 			var config = new HttpConfiguration();
+			config.Routes.IgnoreRoute("ignore", "favicon.ico");
+
 
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
@@ -18,9 +20,8 @@ namespace SelfhostConsole
 
 			config.Routes.MapHttpRoute(
 				name: "Html",
-				//routeTemplate: "{controller}/{view}",
 				routeTemplate: "{*view}",
-				defaults: new {view = "index.html", controller = "home"}
+				defaults: new {view = "index.html", controller = "default"}
 				);
 
 			appBuilder.UseWebApi(config);
